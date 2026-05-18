@@ -17,13 +17,13 @@ Static prototype for Beckmans button hover micro interactions.
 python3 -m http.server 5173
 ```
 
-Open `http://localhost:5173/` for the button prototype.
+Open `http://localhost:5173/button/` for the button prototype.
 
-Open `http://localhost:5173/card.html` for the full card prototype.
+Open `http://localhost:5173/card/` for the full card prototype.
 
 ## Live
 
 GitHub Pages:
 
-- Button: https://tomrobinkarlsson.github.io/beckmans-micro-animations/
-- Card: https://tomrobinkarlsson.github.io/beckmans-micro-animations/card.html
+- Button: https://tomrobinkarlsson.github.io/beckmans-micro-animations/button/
+- Card: https://tomrobinkarlsson.github.io/beckmans-micro-animations/card/
