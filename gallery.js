@@ -4,7 +4,6 @@ const galleryViewport = document.querySelector(".gallery__viewport");
 const galleryReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const animatedItems = new WeakSet();
 const marqueePixelsPerSecond = 42;
-const hoverRadius = "9999px";
 let marqueeTween;
 let marqueeAnimation;
 let resizeDebounce;
@@ -52,6 +51,16 @@ function getLoopDistance() {
   return gallerySequence.getBoundingClientRect().width + getTrackGap();
 }
 
+function getHoverRadius(item) {
+  const { width, height } = item.getBoundingClientRect();
+
+  if (Math.abs(width - height) <= 2) {
+    return "50%";
+  }
+
+  return `${Math.round(Math.min(width, height) * 0.42)}px`;
+}
+
 function prepareCloneAccessibility(sequence) {
   sequence.setAttribute("aria-hidden", "true");
   sequence.querySelectorAll(".gallery-item").forEach((item) => {
@@ -85,6 +94,7 @@ function setupGsapGalleryItem(item) {
   const mediaImage = item.querySelector(".gallery-item__image");
   const tagGroup = item.querySelector(".gallery-item__tags");
   const tags = item.querySelectorAll(".gallery-item__tag");
+  const itemHoverRadius = getHoverRadius(item);
   let active = false;
 
   gsap.set(mediaMask, {
@@ -120,7 +130,7 @@ function setupGsapGalleryItem(item) {
     const instant = galleryReduceMotion.matches;
 
     gsap.to(mediaMask, {
-      borderRadius: nextActive ? hoverRadius : "0px",
+      borderRadius: nextActive ? itemHoverRadius : "0px",
       duration: instant ? 0.001 : nextActive ? 0.78 : 0.58,
       ease: nextActive ? "expo.out" : "power3.inOut",
       overwrite: "auto",
@@ -163,6 +173,7 @@ function setupFallbackGalleryItem(item) {
   const mediaImage = item.querySelector(".gallery-item__image");
   const tagGroup = item.querySelector(".gallery-item__tags");
   const tags = item.querySelectorAll(".gallery-item__tag");
+  const itemHoverRadius = getHoverRadius(item);
   let active = false;
   let radiusAnimation;
   let imageAnimation;
@@ -189,7 +200,7 @@ function setupFallbackGalleryItem(item) {
 
     radiusAnimation = mediaMask.animate(
       {
-        borderRadius: nextActive ? ["0px", hoverRadius] : [hoverRadius, "0px"],
+        borderRadius: nextActive ? ["0px", itemHoverRadius] : [itemHoverRadius, "0px"],
       },
       {
         duration: instant ? 1 : nextActive ? 780 : 580,
