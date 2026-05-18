@@ -5,7 +5,7 @@ Static prototype for Beckmans button hover micro interactions.
 ## Included
 
 - Primary button reveal from black square to magenta pill
-- Secondary button reveal from gray square to dark gray pill
+- Secondary button reveal from gray square to magenta pill
 - Separate full card hover prototype page
 - Figma-matched 44px button height, color, radius, and typography
 - GSAP animation with a Web Animations API fallback

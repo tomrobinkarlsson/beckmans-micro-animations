@@ -89,8 +89,8 @@ body {
 .micro-button--secondary {
   --button-bg: var(--gray-5);
   --button-color: var(--black);
-  --button-hover-bg: #595959;
-  --button-hover-color: var(--white);
+  --button-hover-bg: var(--magenta);
+  --button-hover-color: var(--black);
   --button-focus-color: var(--black);
 }
 
