@@ -4,6 +4,8 @@ const galleryViewport = document.querySelector(".gallery__viewport");
 const galleryReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const animatedItems = new WeakSet();
 const marqueePixelsPerSecond = 42;
+const maskPointCount = 80;
+const squircleExponent = 4.6;
 let marqueeTween;
 let marqueeAnimation;
 let resizeDebounce;
@@ -51,15 +53,46 @@ function getLoopDistance() {
   return gallerySequence.getBoundingClientRect().width + getTrackGap();
 }
 
-function getHoverRadius(item) {
-  const { width, height } = item.getBoundingClientRect();
-  const shortestSide = Math.min(width, height);
+function getMaskPaths(item) {
+  const squarePoints = [];
+  const squirclePoints = [];
+  const pointsPerSide = maskPointCount / 4;
 
-  if (Math.abs(width - height) <= 2) {
-    return "50%";
+  for (let index = 0; index < maskPointCount; index += 1) {
+    const angle = (index / maskPointCount) * Math.PI * 2;
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
+    const side = Math.floor(index / pointsPerSide);
+    const sideProgress = (index % pointsPerSide) / pointsPerSide;
+    const squircleX =
+      50 + Math.sign(cos) * Math.pow(Math.abs(cos), 2 / squircleExponent) * 50;
+    const squircleY =
+      50 + Math.sign(sin) * Math.pow(Math.abs(sin), 2 / squircleExponent) * 50;
+    let squareX;
+    let squareY;
+
+    if (side === 0) {
+      squareX = sideProgress <= 0.5 ? 100 : 100 - (sideProgress - 0.5) * 100;
+      squareY = sideProgress <= 0.5 ? 50 + sideProgress * 100 : 100;
+    } else if (side === 1) {
+      squareX = sideProgress <= 0.5 ? 50 - sideProgress * 100 : 0;
+      squareY = sideProgress <= 0.5 ? 100 : 100 - (sideProgress - 0.5) * 100;
+    } else if (side === 2) {
+      squareX = sideProgress <= 0.5 ? 0 : (sideProgress - 0.5) * 100;
+      squareY = sideProgress <= 0.5 ? 50 - sideProgress * 100 : 0;
+    } else {
+      squareX = sideProgress <= 0.5 ? 50 + sideProgress * 100 : 100;
+      squareY = sideProgress <= 0.5 ? 0 : (sideProgress - 0.5) * 100;
+    }
+
+    squarePoints.push(`${squareX.toFixed(3)}% ${squareY.toFixed(3)}%`);
+    squirclePoints.push(`${squircleX.toFixed(3)}% ${squircleY.toFixed(3)}%`);
   }
 
-  return `${shortestSide / 2}px`;
+  return {
+    square: `polygon(${squarePoints.join(", ")})`,
+    squircle: `polygon(${squirclePoints.join(", ")})`,
+  };
 }
 
 function prepareCloneAccessibility(sequence) {
@@ -95,11 +128,11 @@ function setupGsapGalleryItem(item) {
   const mediaImage = item.querySelector(".gallery-item__image");
   const tagGroup = item.querySelector(".gallery-item__tags");
   const tags = item.querySelectorAll(".gallery-item__tag");
-  const itemHoverRadius = getHoverRadius(item);
+  const maskPaths = getMaskPaths(item);
   let active = false;
 
   gsap.set(mediaMask, {
-    borderRadius: "0%",
+    clipPath: maskPaths.square,
     force3D: true,
   });
 
@@ -131,7 +164,7 @@ function setupGsapGalleryItem(item) {
     const instant = galleryReduceMotion.matches;
 
     gsap.to(mediaMask, {
-      borderRadius: nextActive ? itemHoverRadius : "0px",
+      clipPath: nextActive ? maskPaths.squircle : maskPaths.square,
       duration: instant ? 0.001 : nextActive ? 0.78 : 0.58,
       ease: nextActive ? "expo.out" : "power3.inOut",
       overwrite: "auto",
@@ -174,13 +207,14 @@ function setupFallbackGalleryItem(item) {
   const mediaImage = item.querySelector(".gallery-item__image");
   const tagGroup = item.querySelector(".gallery-item__tags");
   const tags = item.querySelectorAll(".gallery-item__tag");
-  const itemHoverRadius = getHoverRadius(item);
+  const maskPaths = getMaskPaths(item);
   let active = false;
-  let radiusAnimation;
+  let maskAnimation;
   let imageAnimation;
   let tagGroupAnimation;
   let tagAnimations = [];
 
+  mediaMask.style.clipPath = maskPaths.square;
   tagGroup.style.opacity = "0";
   tagGroup.style.transform = "translate3d(-50%, -50%, 0) translateY(8px)";
   tags.forEach((tag) => {
@@ -194,14 +228,16 @@ function setupFallbackGalleryItem(item) {
 
     active = nextActive;
     const instant = galleryReduceMotion.matches;
-    radiusAnimation?.cancel();
+    maskAnimation?.cancel();
     imageAnimation?.cancel();
     tagGroupAnimation?.cancel();
     tagAnimations.forEach((animation) => animation.cancel());
 
-    radiusAnimation = mediaMask.animate(
+    maskAnimation = mediaMask.animate(
       {
-        borderRadius: nextActive ? ["0px", itemHoverRadius] : [itemHoverRadius, "0px"],
+        clipPath: nextActive
+          ? [maskPaths.square, maskPaths.squircle]
+          : [maskPaths.squircle, maskPaths.square],
       },
       {
         duration: instant ? 1 : nextActive ? 780 : 580,
