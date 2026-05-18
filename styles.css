@@ -1,12 +1,4 @@
 @font-face {
-  font-family: "FuturaEFOP-DemiBold";
-  src: url("./assets/fonts/FuturaEFOP-DemiBold.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: "Rund Normal Text BETA";
   src: url("./assets/fonts/RundNormalTextBETA-Regular.otf") format("opentype");
   font-weight: 400;
@@ -26,6 +18,7 @@
   --black: #000;
   --white: #fff;
   --magenta: #fd3db5;
+  --gray-5: #e0e0e0;
 }
 
 * {
@@ -46,152 +39,83 @@ body {
 }
 
 .canvas {
-  position: relative;
-  width: 670px;
-  height: 899px;
-  margin: 0 auto;
+  display: grid;
+  width: 100%;
+  min-height: 100vh;
+  place-items: center;
   background: var(--white);
 }
 
-.card {
-  position: absolute;
-  top: 140px;
-  left: 127px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 416px;
-  height: 619px;
-  background: var(--white);
-  color: var(--black);
-  cursor: pointer;
-  outline: 0;
-}
-
-.card__media-mask {
-  position: relative;
-  width: 416px;
-  height: 416px;
-  flex: 0 0 416px;
-  contain: paint;
-  isolation: isolate;
-  overflow: hidden;
-  border-radius: 0;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  will-change: border-radius;
-}
-
-.card__image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1);
-  transform-origin: 50% 50%;
-  will-change: transform;
-  pointer-events: none;
-}
-
-.card__content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  padding-top: 16px;
-  gap: 16px;
-}
-
-.card__tags {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
-}
-
-.tag {
-  position: relative;
+.button-row {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 16px;
+}
+
+.micro-button {
+  position: relative;
+  display: inline-flex;
+  min-width: 104px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  border: 0;
   border-radius: 0;
-  min-height: 29px;
-  padding: 4px 8px;
-  background: var(--black);
-  color: var(--white);
+  padding: 16px 28px;
+  background: var(--button-bg);
+  color: var(--button-color);
+  cursor: pointer;
   font-family: "Rund Normal Text BETA", Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   line-height: normal;
+  letter-spacing: 0;
   white-space: nowrap;
+  appearance: none;
+  isolation: isolate;
+  will-change: border-radius;
 }
 
-.tag--category {
-  border-radius: 24px;
+.micro-button--primary {
+  --button-bg: var(--black);
+  --button-color: var(--white);
+  --button-hover-bg: var(--magenta);
+  --button-hover-color: var(--black);
+  --button-focus-color: var(--magenta);
 }
 
-.tag__text {
+.micro-button--secondary {
+  --button-bg: var(--gray-5);
+  --button-color: var(--black);
+  --button-hover-bg: #595959;
+  --button-hover-color: var(--white);
+  --button-focus-color: var(--black);
+}
+
+.micro-button:focus-visible {
+  outline: 2px solid var(--button-focus-color);
+  outline-offset: 4px;
+}
+
+.micro-button__text {
   position: relative;
   z-index: 1;
 }
 
-.tag__text--hover {
+.micro-button__text--hover {
   position: absolute;
-  inset: -3px;
+  inset: 0;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 8px;
-  background: var(--magenta);
   border-radius: inherit;
-  color: var(--black);
+  background: var(--button-hover-bg);
+  color: var(--button-hover-color);
+  transform: translateY(-101%);
   will-change: transform;
-}
-
-.tag--category .tag__text--hover {
-  border-radius: 27px;
-}
-
-.card__copy {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 8px;
-  color: var(--black);
-}
-
-.card__title {
-  width: 100%;
-  margin: 0;
-  overflow: hidden;
-  color: var(--black);
-  font-family: "FuturaEFOP-DemiBold", Arial, sans-serif;
-  font-size: 26px;
-  font-weight: 700;
-  font-style: normal;
-  font-feature-settings: "zero" 1, "dlig" 1;
-  line-height: 1.2;
-  letter-spacing: 0;
-}
-
-.card__excerpt {
-  display: -webkit-box;
-  width: 100%;
-  height: 76px;
-  margin: 0;
-  overflow: hidden;
-  color: var(--black);
-  font-family: "Rund Normal Text BETA", Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  font-feature-settings: "zero" 1, "dlig" 1;
-  line-height: 24px;
-  letter-spacing: 0;
-  text-overflow: ellipsis;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
 }
 
 @media (prefers-reduced-motion: reduce) {

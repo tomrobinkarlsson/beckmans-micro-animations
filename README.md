@@ -1,14 +1,15 @@
 # Beckmans Micro Animations
 
-Static prototype for Beckmans card hover micro interactions.
+Static prototype for Beckmans button hover micro interactions.
 
 ## Included
 
-- Fluid image mask morph from square to circle
-- 5% image scale on hover
-- Masked tag reveal from black to magenta
-- Figma-matched card sizing, spacing, typography, and truncation
-- Local font and image assets for faithful rendering
+- Primary button reveal from black square to magenta pill
+- Secondary button reveal from gray square to dark gray pill
+- Separate full card hover prototype page
+- Figma-matched 44px button height, color, radius, and typography
+- GSAP animation with a Web Animations API fallback
+- Local font assets for faithful rendering
 
 ## Local Preview
 
@@ -16,10 +17,13 @@ Static prototype for Beckmans card hover micro interactions.
 python3 -m http.server 5173
 ```
 
-Open `http://localhost:5173/`.
+Open `http://localhost:5173/` for the button prototype.
+
+Open `http://localhost:5173/card.html` for the full card prototype.
 
 ## Live
 
 GitHub Pages:
 
-https://tomrobinkarlsson.github.io/beckmans-micro-animations/
+- Button: https://tomrobinkarlsson.github.io/beckmans-micro-animations/
+- Card: https://tomrobinkarlsson.github.io/beckmans-micro-animations/card.html
