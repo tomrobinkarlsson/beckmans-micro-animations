@@ -53,12 +53,13 @@ function getLoopDistance() {
 
 function getHoverRadius(item) {
   const { width, height } = item.getBoundingClientRect();
+  const shortestSide = Math.min(width, height);
 
   if (Math.abs(width - height) <= 2) {
     return "50%";
   }
 
-  return `${Math.round(Math.min(width, height) * 0.42)}px`;
+  return `${shortestSide / 2}px`;
 }
 
 function prepareCloneAccessibility(sequence) {
