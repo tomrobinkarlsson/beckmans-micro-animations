@@ -147,10 +147,9 @@ body {
   isolation: isolate;
   overflow: hidden;
   border-radius: 0;
-  clip-path: inset(0);
   backface-visibility: hidden;
   transform: translateZ(0);
-  will-change: clip-path;
+  will-change: border-radius;
 }
 
 .gallery-item__image {
