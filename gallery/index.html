@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beckmans Gallery Micro Animation</title>
+    <meta
+      name="description"
+      content="A Beckmans gallery slider prototype with continuous looping motion, image mask hovers, and centered metadata tags."
+    />
+    <meta property="og:title" content="Beckmans Gallery Micro Animation" />
+    <meta
+      property="og:description"
+      content="Continuous gallery slider with square-to-round image hovers and centered metadata tags."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://tomrobinkarlsson.github.io/beckmans-micro-animations/gallery/"
+    />
+    <meta
+      property="og:image"
+      content="https://tomrobinkarlsson.github.io/beckmans-micro-animations/assets/media/preview.png"
+    />
+    <link rel="stylesheet" href="../gallery.css" />
+    <script defer src="../assets/vendor/gsap.min.js"></script>
+    <script defer src="../gallery.js"></script>
+  </head>
+  <body>
+    <main class="gallery-canvas" aria-label="Beckmans gallery slider prototype">
+      <section class="gallery" aria-label="Student work gallery">
+        <div class="gallery__viewport">
+          <div class="gallery__track">
+            <div class="gallery__sequence">
+              <article class="gallery-item gallery-item--large" tabindex="0">
+                <div class="gallery-item__media-mask">
+                  <img
+                    class="gallery-item__image"
+                    src="../assets/media/gallery/gallery-01.png"
+                    alt="Silver object submerged in dark water"
+                  />
+                </div>
+                <div class="gallery-item__tags" aria-label="Gallery item metadata">
+                  <span class="gallery-item__tag gallery-item__tag--person">Name Namesson</span>
+                  <span class="gallery-item__tag gallery-item__tag--project">Project name</span>
+                  <span class="gallery-item__tag gallery-item__tag--program">Mode 180hp</span>
+                </div>
+              </article>
+
+              <div class="gallery-stack">
+                <article class="gallery-item gallery-item--stacked" tabindex="0">
+                  <div class="gallery-item__media-mask">
+                    <img
+                      class="gallery-item__image"
+                      src="../assets/media/gallery/gallery-02.png"
+                      alt="Soft translucent object on a concrete floor"
+                    />
+                  </div>
+                  <div class="gallery-item__tags" aria-label="Gallery item metadata">
+                    <span class="gallery-item__tag gallery-item__tag--person">Name Namesson</span>
+                    <span class="gallery-item__tag gallery-item__tag--project">Project name</span>
+                    <span class="gallery-item__tag gallery-item__tag--program">Mode 180hp</span>
+                  </div>
+                </article>
+
+                <article class="gallery-item gallery-item--stacked" tabindex="0">
+                  <div class="gallery-item__media-mask">
+                    <img
+                      class="gallery-item__image"
+                      src="../assets/media/gallery/gallery-03.png"
+                      alt="Glass vessels with green liquid and red tomatoes"
+                    />
+                  </div>
+                  <div class="gallery-item__tags" aria-label="Gallery item metadata">
+                    <span class="gallery-item__tag gallery-item__tag--person">Name Namesson</span>
+                    <span class="gallery-item__tag gallery-item__tag--project">Project name</span>
+                    <span class="gallery-item__tag gallery-item__tag--program">Mode 180hp</span>
+                  </div>
+                </article>
+              </div>
+
+              <article class="gallery-item gallery-item--portrait" tabindex="0">
+                <div class="gallery-item__media-mask">
+                  <img
+                    class="gallery-item__image"
+                    src="../assets/media/gallery/gallery-04.png"
+                    alt="Round wooden cabinet mounted on a pale wall"
+                  />
+                </div>
+                <div class="gallery-item__tags" aria-label="Gallery item metadata">
+                  <span class="gallery-item__tag gallery-item__tag--person">Name Namesson</span>
+                  <span class="gallery-item__tag gallery-item__tag--project">Project name</span>
+                  <span class="gallery-item__tag gallery-item__tag--program">Mode 180hp</span>
+                </div>
+              </article>
+
+              <article class="gallery-item gallery-item--square" tabindex="0">
+                <div class="gallery-item__media-mask">
+                  <img
+                    class="gallery-item__image"
+                    src="../assets/media/gallery/gallery-05.png"
+                    alt="Metal box with small flowers on top"
+                  />
+                </div>
+                <div class="gallery-item__tags" aria-label="Gallery item metadata">
+                  <span class="gallery-item__tag gallery-item__tag--person">Name Namesson</span>
+                  <span class="gallery-item__tag gallery-item__tag--project">Project name</span>
+                  <span class="gallery-item__tag gallery-item__tag--program">Mode 180hp</span>
+                </div>
+              </article>
+
+              <div class="gallery-stack gallery-stack--narrow">
+                <article class="gallery-item gallery-item--stacked" tabindex="0">
+                  <div class="gallery-item__media-mask">
+                    <img
+                      class="gallery-item__image"
+                      src="../assets/media/gallery/gallery-06.png"
+                      alt="Yellow lamp on books"
+                    />
+                  </div>
+                  <div class="gallery-item__tags" aria-label="Gallery item metadata">
+                    <span class="gallery-item__tag gallery-item__tag--person">Name Namesson</span>
+                    <span class="gallery-item__tag gallery-item__tag--project">Project name</span>
+                    <span class="gallery-item__tag gallery-item__tag--program">Mode 180hp</span>
+                  </div>
+                </article>
+
+                <article class="gallery-item gallery-item--stacked" tabindex="0">
+                  <div class="gallery-item__media-mask">
+                    <img
+                      class="gallery-item__image"
+                      src="../assets/media/gallery/gallery-07.png"
+                      alt="Wooden shelving cabinet in a bright room"
+                    />
+                  </div>
+                  <div class="gallery-item__tags" aria-label="Gallery item metadata">
+                    <span class="gallery-item__tag gallery-item__tag--person">Name Namesson</span>
+                    <span class="gallery-item__tag gallery-item__tag--project">Project name</span>
+                    <span class="gallery-item__tag gallery-item__tag--program">Mode 180hp</span>
+                  </div>
+                </article>
+              </div>
+
+              <article class="gallery-item gallery-item--end" tabindex="0">
+                <div class="gallery-item__media-mask">
+                  <img
+                    class="gallery-item__image"
+                    src="../assets/media/gallery/gallery-08.png"
+                    alt="Studio product scene with a yellow table and red handle"
+                  />
+                </div>
+                <div class="gallery-item__tags" aria-label="Gallery item metadata">
+                  <span class="gallery-item__tag gallery-item__tag--person">Name Namesson</span>
+                  <span class="gallery-item__tag gallery-item__tag--project">Project name</span>
+                  <span class="gallery-item__tag gallery-item__tag--program">Mode 180hp</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

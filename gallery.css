@@ -1,0 +1,227 @@
+@font-face {
+  font-family: "Rund Normal Text BETA";
+  src: url("./assets/fonts/RundNormalTextBETA-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rund Normal Text BETA";
+  src: url("./assets/fonts/RundNormalTextBETA-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --magenta: #fd3db5;
+  --gallery-gap: 16px;
+  --gallery-height: 417px;
+  --gallery-width: 2169px;
+  --gallery-start-offset: -72.5px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  overflow-x: hidden;
+  background: var(--white);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--white);
+  color: var(--black);
+  font-family: "Rund Normal Text BETA", Arial, sans-serif;
+}
+
+.gallery-canvas {
+  display: flex;
+  width: 100%;
+  min-height: 641px;
+  height: 100vh;
+  align-items: center;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.gallery {
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery__viewport {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 641px;
+  align-items: center;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.gallery__track {
+  display: flex;
+  align-items: center;
+  gap: var(--gallery-gap);
+  margin-left: var(--gallery-start-offset);
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.gallery__sequence {
+  display: flex;
+  width: var(--gallery-width);
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--gallery-gap);
+}
+
+.gallery-stack {
+  display: flex;
+  width: 296px;
+  height: var(--gallery-height);
+  flex: 0 0 296px;
+  flex-direction: column;
+  gap: var(--gallery-gap);
+}
+
+.gallery-stack--narrow {
+  width: 295px;
+  flex-basis: 295px;
+}
+
+.gallery-item {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  overflow: visible;
+  color: var(--white);
+  cursor: pointer;
+  outline: 0;
+}
+
+.gallery-item--large {
+  width: 416px;
+  height: var(--gallery-height);
+}
+
+.gallery-item--portrait {
+  width: 332px;
+  height: var(--gallery-height);
+}
+
+.gallery-item--square {
+  width: 417px;
+  height: var(--gallery-height);
+}
+
+.gallery-item--end {
+  width: 333px;
+  height: var(--gallery-height);
+}
+
+.gallery-item--stacked {
+  width: 100%;
+  height: 200.5px;
+}
+
+.gallery-item:focus-visible .gallery-item__media-mask {
+  outline: 2px solid var(--magenta);
+  outline-offset: 4px;
+}
+
+.gallery-item__media-mask {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  contain: paint;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: border-radius;
+}
+
+.gallery-item__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.gallery-item__tags {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 8px, 0);
+  will-change: opacity, transform;
+}
+
+.gallery-item__tag {
+  position: relative;
+  display: flex;
+  min-height: 25px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 4px 8px;
+  background: var(--black);
+  color: var(--white);
+  font-family: "Rund Normal Text BETA", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  white-space: nowrap;
+  transform: translateY(-101%);
+  will-change: transform, opacity;
+}
+
+.gallery-item__tag--person {
+  font-weight: 700;
+}
+
+.gallery-item__tag--project {
+  border-radius: 24px;
+}
+
+.gallery-item__tag--program {
+  font-style: italic;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --gallery-start-offset: -144px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
