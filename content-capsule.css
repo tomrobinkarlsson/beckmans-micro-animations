@@ -1,0 +1,223 @@
+@font-face {
+  font-family: "FuturaEFOP-DemiBold";
+  src: url("./assets/fonts/FuturaEFOP-DemiBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rund Normal Text BETA";
+  src: url("./assets/fonts/RundNormalTextBETA-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rund Normal Text BETA";
+  src: url("./assets/fonts/RundNormalTextBETA-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --magenta: #fd3db5;
+  --capsule-side-margin: 104px;
+  --capsule-max-width: 1712px;
+  --capsule-start-offset: 0px;
+  --capsule-shape-delay: 0.14;
+  --capsule-text-parallax: 36px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  overflow-x: hidden;
+  background: var(--white);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--white);
+  color: var(--black);
+  font-family: "Rund Normal Text BETA", Arial, sans-serif;
+}
+
+.content-capsule-canvas {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--white);
+}
+
+.content-capsule-scroll {
+  min-height: 290vh;
+  padding-top: calc(100vh + var(--capsule-start-offset));
+  padding-bottom: 130vh;
+}
+
+.content-capsule {
+  position: relative;
+  width: min(
+    var(--capsule-max-width),
+    calc(100vw - (var(--capsule-side-margin) * 2))
+  );
+  margin: 0 auto;
+  aspect-ratio: 1712 / 969;
+  overflow: hidden;
+  border-radius: 0;
+  background: var(--black);
+  color: var(--white);
+  contain: paint;
+  isolation: isolate;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: border-radius;
+}
+
+.content-capsule__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  width: min(848px, calc(100% - 48px));
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  color: var(--white);
+  text-align: center;
+  transform: translate3d(-50%, calc(-50% + var(--capsule-text-y, 0px)), 0);
+  will-change: transform;
+}
+
+.content-capsule__title {
+  display: flex;
+  width: min(842px, 100%);
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  color: var(--white);
+  font-family: "FuturaEFOP-DemiBold", Arial, sans-serif;
+  font-size: 104px;
+  font-weight: 700;
+  font-style: normal;
+  font-feature-settings: "zero" 1;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.content-capsule__body {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.content-capsule__lead,
+.content-capsule__copy {
+  width: 100%;
+  margin: 0;
+  color: var(--white);
+  font-family: "Rund Normal Text BETA", Arial, sans-serif;
+  font-size: 18px;
+  font-feature-settings: "zero" 1, "dlig" 1;
+  line-height: 1.22;
+  letter-spacing: 0;
+}
+
+.content-capsule__lead {
+  font-weight: 700;
+}
+
+.content-capsule__copy {
+  font-weight: 400;
+}
+
+@media (max-width: 1320px) {
+  :root {
+    --capsule-side-margin: 56px;
+  }
+
+  .content-capsule {
+    min-height: 720px;
+    aspect-ratio: auto;
+  }
+
+  .content-capsule__title {
+    font-size: 76px;
+    line-height: 1.06;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --capsule-side-margin: 16px;
+    --capsule-text-parallax: 24px;
+  }
+
+  .content-capsule-scroll {
+    min-height: 300vh;
+    padding-bottom: 120vh;
+  }
+
+  .content-capsule {
+    min-height: 78vh;
+  }
+
+  .content-capsule__content {
+    width: calc(100% - 40px);
+    gap: 28px;
+  }
+
+  .content-capsule__title {
+    font-size: 42px;
+    line-height: 1.06;
+  }
+
+  .content-capsule__body {
+    gap: 20px;
+  }
+
+  .content-capsule__lead,
+  .content-capsule__copy {
+    font-size: 15px;
+    line-height: 1.28;
+  }
+}
+
+@media (max-width: 390px) {
+  .content-capsule__content {
+    width: calc(100% - 32px);
+    gap: 22px;
+  }
+
+  .content-capsule__title {
+    font-size: 36px;
+  }
+
+  .content-capsule__lead,
+  .content-capsule__copy {
+    font-size: 14px;
+    line-height: 1.24;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}

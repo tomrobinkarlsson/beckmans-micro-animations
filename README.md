@@ -8,6 +8,7 @@ Static prototype for Beckmans button hover micro interactions.
 - Secondary button reveal from gray square to magenta pill
 - Separate full card hover prototype page
 - Continuous gallery slider with square-to-round image hovers and centered metadata tags
+- Content capsule scroll prototype that rounds as it reaches viewport center
 - Figma-matched 44px button height, color, radius, and typography
 - GSAP animation with a Web Animations API fallback
 - Local font assets for faithful rendering
@@ -24,6 +25,8 @@ Open `http://localhost:5173/card/` for the full card prototype.
 
 Open `http://localhost:5173/gallery/` for the gallery slider prototype.
 
+Open `http://localhost:5173/content-capsule/` for the content capsule scroll prototype.
+
 ## Live
 
 GitHub Pages:
@@ -31,3 +34,4 @@ GitHub Pages:
 - Button: https://tomrobinkarlsson.github.io/beckmans-micro-animations/button/
 - Card: https://tomrobinkarlsson.github.io/beckmans-micro-animations/card/
 - Gallery: https://tomrobinkarlsson.github.io/beckmans-micro-animations/gallery/
+- Content Capsule: https://tomrobinkarlsson.github.io/beckmans-micro-animations/content-capsule/
