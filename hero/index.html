@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beckmans Primary Hero Micro Animation</title>
+    <meta
+      name="description"
+      content="A Beckmans primary course hero prototype with masked image takeover hover states."
+    />
+    <meta property="og:title" content="Beckmans Primary Hero Micro Animation" />
+    <meta
+      property="og:description"
+      content="Course hero prototype with intro motion and square-to-round image takeover hovers."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://tomrobinkarlsson.github.io/beckmans-micro-animations/hero/"
+    />
+    <meta
+      property="og:image"
+      content="https://tomrobinkarlsson.github.io/beckmans-micro-animations/assets/media/preview.png"
+    />
+    <link rel="stylesheet" href="../hero.css" />
+    <script defer src="../assets/vendor/gsap.min.js"></script>
+    <script defer src="../hero.js"></script>
+  </head>
+  <body>
+    <main class="hero-canvas" aria-label="Beckmans primary hero course prototype">
+      <section class="primary-hero" data-hero>
+        <div class="hero__stage">
+          <nav class="hero-nav" aria-label="Primary">
+            <a class="hero-nav__brand" href="../">beckmans designhögskola</a>
+            <div class="hero-nav__links">
+              <a href="../content-capsule/">Kvällsskolan</a>
+              <a href="../button/">Ansök</a>
+            </div>
+          </nav>
+
+          <div class="hero__bounds" data-hero-bounds>
+            <div class="hero-default" data-hero-default>
+              <button
+                class="hero-trigger hero-title hero-title--form"
+                type="button"
+                data-course="form"
+                aria-label="Visa Form"
+              >
+                form
+              </button>
+              <div
+                class="hero-thumb hero-thumb--form"
+                data-origin="form"
+                aria-hidden="true"
+              >
+                <div class="hero-thumb__content" data-thumb-content>
+                  <img src="../assets/media/hero/form-full.jpg" alt="" />
+                </div>
+              </div>
+
+              <button
+                class="hero-trigger hero-title hero-title--mode"
+                type="button"
+                data-course="mode"
+                aria-label="Visa Mode"
+              >
+                mode
+              </button>
+              <div
+                class="hero-thumb hero-thumb--mode"
+                data-origin="mode"
+                aria-hidden="true"
+              >
+                <div class="hero-thumb__content" data-thumb-content>
+                  <img src="../assets/media/hero/mode-full.jpg" alt="" />
+                </div>
+              </div>
+
+              <button
+                class="hero-trigger hero-title hero-title--vk"
+                type="button"
+                data-course="vk"
+                aria-label="Visa Visuell kommunikation"
+              >
+                <span>visuell</span>
+                <span>kommunikation</span>
+              </button>
+              <div
+                class="hero-thumb hero-thumb--vk"
+                data-origin="vk"
+                aria-hidden="true"
+              >
+                <div class="hero-thumb__content" data-thumb-content>
+                  <img src="../assets/media/hero/vk-full.jpg" alt="" />
+                </div>
+              </div>
+            </div>
+
+            <article
+              class="hero-state hero-state--form"
+              data-state="form"
+              aria-hidden="true"
+            >
+              <div class="hero-state__mask" data-mask>
+                <div class="hero-state__content" data-content>
+                  <img
+                    class="hero-state__image"
+                    src="../assets/media/hero/form-full.jpg"
+                    alt=""
+                  />
+                  <div class="hero-state__alpha"></div>
+                  <div class="hero-state__nav" aria-hidden="true">
+                    <span class="hero-nav__brand">beckmans designhögskola</span>
+                    <span class="hero-nav__links">
+                      <span>Kvällsskolan</span>
+                      <span>Ansök</span>
+                    </span>
+                  </div>
+                  <h1 class="hero-state__title hero-state__title--form" data-state-copy>
+                    form<span class="hero-state__hp">180hp</span>
+                  </h1>
+                  <div class="hero-state__details hero-state__details--form" data-state-copy>
+                    <p>
+                      Du tänker med händerna. Genom material, funktion och rumslighet
+                      utforskar du hur idéer blir till form. Från skiss till verklighet.
+                    </p>
+                    <span class="hero-state__badge">Heltid 3 år</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="hero-state hero-state--vk" data-state="vk" aria-hidden="true">
+              <div class="hero-state__mask" data-mask>
+                <div class="hero-state__content" data-content>
+                  <img
+                    class="hero-state__image"
+                    src="../assets/media/hero/vk-full.jpg"
+                    alt=""
+                  />
+                  <div class="hero-state__alpha"></div>
+                  <div class="hero-state__nav" aria-hidden="true">
+                    <span class="hero-nav__brand">beckmans designhögskola</span>
+                    <span class="hero-nav__links">
+                      <span>Kvällsskolan</span>
+                      <span>Ansök</span>
+                    </span>
+                  </div>
+                  <h1 class="hero-state__title hero-state__title--vk" data-state-copy>
+                    <span>visuell</span>
+                    <span>kommunikation<span class="hero-state__hp">180hp</span></span>
+                  </h1>
+                  <div class="hero-state__details hero-state__details--vk" data-state-copy>
+                    <p>
+                      Du gör idéer synliga. Med bild, form och koncept skapar du
+                      kommunikation som påverkar hur vi ser, tänker och förstår världen.
+                    </p>
+                    <span class="hero-state__badge">Heltid 3 år</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="hero-state hero-state--mode"
+              data-state="mode"
+              aria-hidden="true"
+            >
+              <div class="hero-state__mask" data-mask>
+                <div class="hero-state__content" data-content>
+                  <img
+                    class="hero-state__image"
+                    src="../assets/media/hero/mode-full.jpg"
+                    alt=""
+                  />
+                  <div class="hero-state__alpha"></div>
+                  <div class="hero-state__nav" aria-hidden="true">
+                    <span class="hero-nav__brand">beckmans designhögskola</span>
+                    <span class="hero-nav__links">
+                      <span>Kvällsskolan</span>
+                      <span>Ansök</span>
+                    </span>
+                  </div>
+                  <h1 class="hero-state__title hero-state__title--mode" data-state-copy>
+                    mode<span class="hero-state__hp">180hp</span>
+                  </h1>
+                  <div class="hero-state__details hero-state__details--mode" data-state-copy>
+                    <p>
+                      Mode är idéer i rörelse. Här utvecklar du ditt uttryck genom
+                      material, form och berättelse. I nära dialog med branschen och
+                      samtiden.
+                    </p>
+                    <span class="hero-state__badge">Heltid 3 år</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
