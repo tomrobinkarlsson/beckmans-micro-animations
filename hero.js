@@ -238,8 +238,8 @@ function animateCourse(course) {
   const originRect = getOriginRect(meta.origin);
   const fullRect = getFullRect();
   const coverRect = getCoverCircleRect(fullRect);
-  const originRoundRadius = Math.min(originRect.width, originRect.height) / 2;
   const duration = instant ? 0.001 : 0.78;
+  const takeoverEase = instant ? "none" : "power3.inOut";
   const isResumingState =
     meta.state.getAttribute("aria-hidden") === "false" &&
     gsap.getProperty(meta.state, "autoAlpha") > 0;
@@ -286,7 +286,7 @@ function animateCourse(course) {
         width: coverRect.width,
         height: coverRect.height,
         duration,
-        ease: instant ? "none" : "expo.inOut",
+        ease: takeoverEase,
         overwrite: "auto",
       },
       0,
@@ -297,7 +297,7 @@ function animateCourse(course) {
         x: -coverRect.left,
         y: -coverRect.top,
         duration,
-        ease: instant ? "none" : "expo.inOut",
+        ease: takeoverEase,
         overwrite: "auto",
       },
       0,
@@ -306,11 +306,11 @@ function animateCourse(course) {
       meta.mask,
       {
         borderRadius: instant ? 0 : coverRect.radius,
-        duration: instant ? 0.001 : duration * (isResumingState ? 0.42 : 0.5),
-        ease: "sine.inOut",
+        duration: instant ? 0.001 : duration * (isResumingState ? 0.48 : 1),
+        ease: takeoverEase,
         overwrite: "auto",
       },
-      instant ? 0 : isResumingState ? 0 : duration * 0.2,
+      0,
     )
     .to(
       meta.alpha,
@@ -323,18 +323,6 @@ function animateCourse(course) {
       instant ? 0 : isResumingState ? 0 : 0.12,
     );
 
-  if (!isResumingState) {
-    activeTimeline.to(
-      meta.mask,
-      {
-        borderRadius: instant ? 0 : originRoundRadius,
-        duration: instant ? 0.001 : duration * 0.2,
-        ease: "sine.inOut",
-        overwrite: "auto",
-      },
-      0,
-    );
-  }
 }
 
 function collapseCourse() {
