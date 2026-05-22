@@ -356,8 +356,8 @@ function collapseCourse() {
   const originRect = getOriginRect(meta.origin);
   const fullRect = getFullRect();
   const coverRect = getCoverCircleRect(fullRect);
-  const originRoundRadius = Math.min(originRect.width, originRect.height) / 2;
-  const duration = instant ? 0.001 : 0.56;
+  const duration = instant ? 0.001 : 0.78;
+  const takeoverEase = instant ? "none" : "power3.inOut";
 
   gsap.set(meta.copy, {
     autoAlpha: 1,
@@ -394,9 +394,9 @@ function collapseCourse() {
     .to(
       meta.mask,
       {
-        borderRadius: instant ? 0 : coverRect.radius,
-        duration: instant ? 0.001 : duration * 0.16,
-        ease: "sine.inOut",
+        borderRadius: 0,
+        duration,
+        ease: takeoverEase,
         overwrite: "auto",
       },
       0,
@@ -409,7 +409,7 @@ function collapseCourse() {
         width: originRect.width,
         height: originRect.height,
         duration,
-        ease: instant ? "none" : "power3.inOut",
+        ease: takeoverEase,
         overwrite: "auto",
       },
       0,
@@ -420,30 +420,10 @@ function collapseCourse() {
         x: -originRect.left,
         y: -originRect.top,
         duration,
-        ease: instant ? "none" : "power3.inOut",
+        ease: takeoverEase,
         overwrite: "auto",
       },
       0,
-    )
-    .to(
-      meta.mask,
-      {
-        borderRadius: instant ? 0 : originRoundRadius,
-        duration: instant ? 0.001 : duration * 0.5,
-        ease: "sine.inOut",
-        overwrite: "auto",
-      },
-      instant ? 0 : duration * 0.22,
-    )
-    .to(
-      meta.mask,
-      {
-        borderRadius: 0,
-        duration: instant ? 0.001 : duration * 0.28,
-        ease: "sine.inOut",
-        overwrite: "auto",
-      },
-      instant ? 0 : duration * 0.72,
     );
 }
 
