@@ -1,7 +1,9 @@
 const galleryTrack = document.querySelector(".gallery__track");
 const gallerySequence = document.querySelector(".gallery__sequence");
 const galleryViewport = document.querySelector(".gallery__viewport");
+const galleryCursor = document.querySelector(".gallery-cursor");
 const galleryReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 const animatedItems = new WeakSet();
 const marqueePixelsPerSecond = 42;
 let marqueeTween;
@@ -49,6 +51,48 @@ function getTrackGap() {
 
 function getLoopDistance() {
   return gallerySequence.getBoundingClientRect().width + getTrackGap();
+}
+
+function setupGalleryCursor() {
+  if (!galleryCursor) {
+    return;
+  }
+
+  function setCursorState(event) {
+    if (!finePointer.matches) {
+      return;
+    }
+
+    galleryCursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+    galleryCursor.classList.add("is-visible");
+
+    const hoveredElement = document.elementFromPoint(event.clientX, event.clientY);
+    galleryCursor.classList.toggle(
+      "is-active",
+      Boolean(hoveredElement?.closest(".gallery-item")),
+    );
+  }
+
+  galleryViewport.addEventListener("pointerenter", (event) => {
+    if (!finePointer.matches) {
+      return;
+    }
+
+    galleryCursor.classList.add("is-visible");
+    setCursorState(event);
+  });
+
+  galleryViewport.addEventListener("pointermove", setCursorState);
+
+  galleryViewport.addEventListener("pointerleave", () => {
+    galleryCursor.classList.remove("is-visible", "is-active");
+  });
+
+  if (finePointer.addEventListener) {
+    finePointer.addEventListener("change", () => {
+      galleryCursor.classList.remove("is-visible", "is-active");
+    });
+  }
 }
 
 function getHoverRadius(item) {
@@ -353,6 +397,7 @@ function scheduleResize() {
 }
 
 setupMarquee();
+setupGalleryCursor();
 window.addEventListener("resize", scheduleResize);
 
 if (galleryReduceMotion.addEventListener) {
